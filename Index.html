@@ -294,7 +294,10 @@ $("#dl").onclick=()=>{
 };
 
 // Media (built-in files live in ./media/)
-const SLOTS=[["v2","video","Thalassemia Animated Parent Guide","An animated overview of the condition and key blood-report terminology.","media/thalassemia_animated_parent_guide.mp4"],["v1","video","HBS3001 Presentation","HBS3001 presentation by Prakkash Rajantheran.","media/HBS3001_CDM_PartA_22937641_Prakkash Rajantheran.mp4"],["pod","audio","Parent Podcast","A conversation covering thalassemia variants, iron supplementation and relevant questions for the care team.","media/parent-podcast.mp3"]];
+const SLOTS=[
+["v2","video","Thalassemia Animated Parent Guide","An animated overview of the condition and key blood-report terminology.","media/thalassemia_animated_parent_guide.mp4"],
+["pod","audio","Parent Podcast","A conversation covering thalassemia variants, iron supplementation and relevant questions for the care team.","media/parent-podcast.mp3"]
+];
 const safeUrl=v=>{v=v.trim();if(/^(\.\/|[\w-]+\/)/.test(v)&&!/^[a-z]+:/i.test(v))return v;try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:""}catch{return ""}};
 $("#slots").innerHTML=SLOTS.map(([id,k,t,b,src])=>`<article class="card" data-id="${id}" data-fb="${src}"><h3>${t}</h3><p class="sm muted">${b}</p><div class="player"></div><p class="sm muted status"></p><label class="btn" style="margin-top:.4rem">Load ${k} file<input type="file" accept="${k}/*" hidden></label><label>Public link</label><input class="field link" placeholder="https://"><button class="btn p use" type="button">Use this link</button> <button class="btn rst" type="button">Restore built-in</button></article>`).join("");
 const kinds=Object.fromEntries(SLOTS.map(s=>[s[0],s[1]]));
